@@ -1,11 +1,12 @@
-import { readFileSync, writeFileSync } from "fs";
+const fs = require('fs')
+const path = require('path')
 
 try{
-  const score = readFileSync('./file/score.txt', 'utf-8')
+  const score =fs.readFileSync(path.join(__dirname, './file/score.txt'), 'utf-8')
   const formatScore = score.replaceAll('=',':').split(' ')
   .map(item=>item.split(':')).sort((a,b)=>b[1]-a[1])
   .map(item=>item.join(':')).join('\r\n')
-  writeFileSync('./file/formatScore.txt', formatScore)
+  fs.writeFileSync(path.join(__dirname, './file/formatScore.txt'), formatScore)
 }catch(e){
   console.log(e)
 }

@@ -1,4 +1,5 @@
-import { writeFile, writeFileSync } from 'node:fs'
+const fs = require('fs')
+const path = require('path')
 /*
 fs.writeFile() 是 Node.js 中 fs 模块提供的一个异步方法，用于将数据写入文件。它的语法如下：
 fs.writeFile(file, data[, options], callback)
@@ -13,12 +14,12 @@ fs.writeFile(file, data[, options], callback)
   - err：如果写入文件出错，该参数为一个 Error 对象，否则为 null。
 */
 console.log('start')
-writeFile('./file/test_write.json', "测试fs writeFile 方法", (err)=>{
-  if(err) {
-    return console.log('写入文件失败！' + err.message)
-  }
-  console.log('写入文件成功！')
-})
+// fs.writeFile(path.join(__dirname, './file/test_write.txt'), "测试fs writeFile 方法", (err)=>{
+//   if(err) {
+//     return console.log('写入文件失败！' + err.message)
+//   }
+//   console.log('写入文件成功！')
+// })
 
-writeFileSync('./file/test_write.json', '测试fs writeFileSync 方法')
+fs.writeFileSync(path.join(__dirname, './file/test_write.txt'), '测试fs writeFileSync 方法')
 console.log('end')

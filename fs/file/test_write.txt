@@ -1,0 +1,1 @@
+测试fs writeFileSync 方法

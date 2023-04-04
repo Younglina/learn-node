@@ -1,4 +1,5 @@
-import { readFile, readFileSync } from 'node:fs'
+const fs = require('fs')
+const path = require('path')
 /*
 fs.readFile() 是 Node.js 中 fs 模块提供的一个异步方法，用于读取文件内容。
 fs.readFile(path[, options], callback)
@@ -14,7 +15,7 @@ fs.readFile(path[, options], callback)
   如果需要同步读取文件，可以使用 fs.readFileSync() 方法。
 */
 console.log('start')
-readFile('./file/test.json', 'utf8', (err, dataStr)=>{
+fs.readFile(path.join(__dirname,'file/test.json'), 'utf8', (err, dataStr)=>{
   if(err) {
     return console.log('读取文件失败！' + err.message)
   }
@@ -22,6 +23,6 @@ readFile('./file/test.json', 'utf8', (err, dataStr)=>{
   console.log(d,d.a)
 })
 
-const testData = readFileSync('./file/test.json', 'utf8')
+const testData = fs.readFileSync(path.join(__dirname,'file/test.json'), 'utf8')
 console.log(testData)
 console.log('end')
