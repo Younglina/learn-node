@@ -13,7 +13,7 @@ const storage = multer.diskStorage({
     cb(null, './uploads')
   },
   filename: function (req, file, cb) {
-    console.log(file)
+    // console.log(file)
   // {
   //   fieldname: 'file', 传参时的字段名
   //   originalname: 'postman.png', 文件名
@@ -26,7 +26,11 @@ const storage = multer.diskStorage({
 
 const upload = multer({storage})
  
-app.post('/upload', upload.single('file'), function(req, res, next) {
-  console.log(req.body);
+app.post('/upload', upload.array('file'), function(req, res, next) {
+  console.log(req.files);
   next();
 });
+
+app.listen(3000, ()=>{
+  console.log('start at http://localhost:3000')
+})
