@@ -1,9 +1,8 @@
 const Router = require('koa-router')
-const { koaBody } = require('koa-body')
-
 const router = new Router({prefix: '/user'})
 
 router.get('/', (ctx, next)=>{
+  console.log(ctx.query)
   ctx.body = "get"
 })
 // router.get('/:id', (ctx, next)=>{
@@ -11,14 +10,12 @@ router.get('/', (ctx, next)=>{
 //   console.log(ctx.query)
 //   console.log(ctx.params)
 // })
-router.post('/', (ctx, next)=>{
+router.post('/', (ctx,  next)=>{
+  console.log(ctx.request.body)
   ctx.body = "post"
 })
-router.post('/upload', koaBody({
-  multipart: true
-}), (ctx, next)=>{
+router.post('/upload', (ctx, next)=>{
   console.log(ctx.request.body)
-  console.log(ctx.request.files)
   ctx.body = "upload"
 })
 
