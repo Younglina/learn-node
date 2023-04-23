@@ -18,9 +18,10 @@ class Storage {
         dataObj.set(key, data[key]);
       }
       const res = await dataObj.save()
-      return { success: true, message: '操作成功' }
+      return { success: true }
     } catch (e) {
-      return { success: false, message: e.rawMessage, code: e.code }
+      const message = e.rawMessage.split('.')
+      return { success: false, message: message[0], status: 500 }
     }
   }
 }

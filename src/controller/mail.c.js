@@ -1,5 +1,6 @@
 const nodemailer = require('nodemailer');
 const { MAIL_USER, MAIL_PASS, MAIL_USERGET } = require('../app/config')
+const { MAIL_SEND_SUCCESS } = require('../constants/messageTypes')
 
 class MailController {
   async send({to, subject, text}, ctx){
@@ -17,7 +18,7 @@ class MailController {
     // 设置电子邮件的选项
     const mailOptions = {
       from: MAIL_USER,
-      to: MAIL_USERGET,
+      to,
       subject: subject,
       text: text
     };
@@ -26,9 +27,9 @@ class MailController {
       // 使用SMTP传输对象发送电子邮件
       const info = await transporter.sendMail(mailOptions);
       console.log('Message sent: %s', info.messageId);
-      ctx.body = { message: '邮件发送成功' };
+      ctx.body = MAIL_SEND_SUCCESS;
     } catch (error) {
-      ctx.app.emit('error', { error: '邮件发送失败' }, ctx)
+      ctx.app.emit('error', { status: 500, message: error.message}, ctx)
     }
   }
 }
