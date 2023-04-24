@@ -9,5 +9,8 @@ module.exports = {
   CLOUD_SERVERURL,
   MAIL_USER,
   MAIL_USERGET,
-  MAIL_PASS
+  MAIL_PASS,
+  CRYPTO_ITER,
+  CRYPTO_KEYLEN,
+  CRYPTO_HASH,
 } = process.env
