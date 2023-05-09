@@ -1,5 +1,5 @@
 const nodemailer = require('nodemailer');
-const { MAIL_USER, MAIL_PASS, MAIL_USERGET } = require('../app/config')
+const { MAIL_USER, MAIL_PASS } = require('../app/config')
 const { MAIL_SEND_SUCCESS } = require('../constants/messageTypes')
 
 class MailController {
